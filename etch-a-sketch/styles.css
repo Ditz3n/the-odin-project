@@ -67,11 +67,23 @@ button:active {
     transform: scale(0.95);
 }
 
-
-.grid-container {
+.grid-container-wrapper {
     width: 600px;
     aspect-ratio: 1 / 1;
     border: solid 2px white;
+}
+
+.grid-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(var(--grid-columns), 1fr) ;
+    grid-template-rows: repeat(var(--grid-rows), 1fr) ;
+}
+
+.grid-container div {
+    box-sizing: border-box;
+    border: solid 1px white;
 }
 
 .the-odin-project-credit {
