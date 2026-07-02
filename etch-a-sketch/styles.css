@@ -55,7 +55,7 @@ button {
     cursor: pointer;
     padding: 20px 20px;
     transition: all 0.1s ease-out;
-    border: solid 1px white;
+    border: solid 2px white;
     font-size: larger;
 }
 
@@ -67,6 +67,12 @@ button:active {
     transform: scale(0.95);
 }
 
+button.active {
+    transform: scale(0.95);
+    background-color: white;
+    color: black;
+}
+
 .color-picker-container {
     display: flex;
     position: relative;
@@ -74,7 +80,8 @@ button:active {
     width: 100%;
     height: 12%;
     transition: all 0.1s ease-out;
-    border: solid 1px white;
+    border: solid 2px white;
+    box-sizing: border-box;
 }
 
 .color-picker-container:hover {
@@ -96,7 +103,7 @@ input {
     left: 50%;
     top: 50%;
     transform:translateX(-50%) translateY(-50%);
-    background-color: var(--drawColor);
+    background-color: transparent;
 }
 
 .grid-container-wrapper {
@@ -116,6 +123,10 @@ input {
 .grid-container div {
     box-sizing: border-box;
     border: solid 1px white;
+}
+
+.painted-element {
+    background-color: var(--drawColor);
 }
 
 .the-odin-project-credit {

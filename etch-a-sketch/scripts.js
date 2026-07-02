@@ -1,4 +1,6 @@
-console.log("Hello World!");
+let currentMousedownHandler = null;
+let currentMouseoverHandler = null;
+let drawColor = "#000000";
 
 function selectGridSize() {
     let userSelectedGridSize = 0;
@@ -37,6 +39,10 @@ function selectGridSize() {
         gridContainer.appendChild(gridElement);
     };
 
+    if (currentMousedownHandler !== null && currentMouseoverHandler !== null) {
+        addAndSetEventListeners(currentMousedownHandler, currentMouseoverHandler);
+    };
+
     console.log(`A ${gridColumnCount}x${gridRowCount} grid container has been created!`);
 };
 
@@ -58,7 +64,6 @@ function getContrastYIQ(hexColor) {
 // Draw Color Selector - Takes event object .value and stores it
 function selectDrawColor(e) {
     drawColor = e.target.value;
-    console.log(drawColor);
 
     let colorPickerDisplay = document.querySelector(".color-picker-container p");
 
@@ -68,6 +73,65 @@ function selectDrawColor(e) {
 
     // Set color according to contrast
     colorPickerDisplay.style.color = getContrastYIQ(drawColor);
+};
+
+function addAndSetEventListeners(handleMousedown, handleMouseOver) {
+    document.querySelectorAll(".grid-container div").forEach((arr) => {
+        arr.addEventListener("mousedown", handleMousedown);
+        arr.addEventListener("mouseover", handleMouseOver);
+    });
+    currentMousedownHandler = handleMousedown;
+    currentMouseoverHandler = handleMouseOver;
+};
+
+function removeAndNullifyEventListeners() {
+    document.querySelectorAll(".grid-container div").forEach((arr) => {
+        if (currentMousedownHandler !== null) arr.removeEventListener("mousedown", currentMousedownHandler);
+        if (currentMouseoverHandler !== null) arr.removeEventListener("mouseover", currentMouseoverHandler);
+    });
+
+    currentMousedownHandler = null;
+    currentMouseoverHandler = null;
+};
+
+function penDrawMode() {
+    // Local functions to declare how to paint the grid
+    // It'll differ between the modes.
+    function handleMousedown(e) {
+        e.preventDefault();
+        // .target to select the element the event-object points at
+        e.target.setAttribute("style", `background-color: ${drawColor}`);
+    };
+
+    function handleMouseOver(e) {
+        if (e.buttons === 1) {
+            e.preventDefault();
+            e.target.setAttribute("style", `background-color: ${drawColor}`);
+        };
+    }
+
+    // Set global handler values and add handlers to div elements
+    // function references > calls - to later be called by the handlers
+    addAndSetEventListeners(handleMousedown, handleMouseOver);
+};
+
+function selectDrawMode(btnVal) {
+    // Remove any existing handlers before setting new ones
+    removeAndNullifyEventListeners();
+
+    allBtnElements.forEach((arr) => {
+        arr.classList.remove("active");
+    });
+    
+    if (btnVal === "Pen") penDrawMode();
+};
+
+function deselectDrawMode() {
+    removeAndNullifyEventListeners();
+
+    allBtnElements.forEach((arr) => {
+        arr.classList.remove("active");
+    });
 };
 
 // Get all button elements from the DOM as a NodeList element
@@ -80,30 +144,47 @@ Later, different function calls will be added for each of the buttons.
 */
 allBtnElements.forEach((arr) => {
     arr.addEventListener("click", () => {
-        switch(arr.classList.value) {
-            case("btn-one"):
-                console.log("Button 1 Clicked!");
+        switch(arr.textContent) {
+            case("Grid Size"):
                 selectGridSize();
                 break;
-            case("btn-two"):
-                console.log("Button 2 Clicked!");
+            case("Pen"):
+                if (arr.classList.contains("active")) {
+                    deselectDrawMode();
+                } else {
+                    selectDrawMode(arr.textContent);
+                    arr.classList.add("active");
+                };
                 break;
-            case("btn-three"):
-                console.log("Button 3 Clicked!");
+            case("Rainbow Pen"):
+                if (arr.classList.contains("active")) {
+                    deselectDrawMode();
+                } else {
+                    selectDrawMode(arr.textContent);
+                    arr.classList.add("active");
+                };
                 break;
-            case("btn-four"):
-                console.log("Button 4 Clicked!");
+            case("Brush"):
+                if (arr.classList.contains("active")) {
+                    deselectDrawMode();
+                } else {
+                    selectDrawMode(arr.textContent);
+                    arr.classList.add("active");
+                };
                 break;
-            case("btn-five"):
-                console.log("Button 5 Clicked!");
+            case("Eraser"):
+               if (arr.classList.contains("active")) {
+                    deselectDrawMode();
+                } else {
+                    selectDrawMode(arr.textContent);
+                    arr.classList.add("active");
+                };
                 break;
         };  
     });
 });
 
 const drawColorInput = document.querySelector("input");
-
-let drawColor = "#000000";
 
 drawColorInput.addEventListener("input", (e) => {
     selectDrawColor(e);
