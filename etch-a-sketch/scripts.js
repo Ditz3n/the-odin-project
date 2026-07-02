@@ -3,43 +3,11 @@ let currentMousedownHandler = null;
 let currentMouseoverHandler = null;
 let drawColor = "#000000";
 
-function drawStartingGrid(val) {
+function drawGrid(val) {
     let gridColumnCount = val;
     let gridRowCount = val;
 
-    // Add column and row count to grid container
-    const gridContainer = document.querySelector(".grid-container");
-    gridContainer.style.setProperty("--grid-columns", gridColumnCount);
-    gridContainer.style.setProperty("--grid-rows", gridColumnCount);
-
-    // Iterate new grid elements into grid container
-    for (let i = 0; i < gridColumnCount * gridRowCount; i++) {
-        const gridElement = document.createElement("div");
-        gridElement.classList.add(`grid-element-${i}`);
-        gridContainer.appendChild(gridElement);
-    };
-}
-
-function selectGridSize() {
-    let gridColumnCount = null;
-    let gridRowCount = null;
-
-    // Prompt user for grid size
-    do {
-        userSelectedGridSize = prompt("Which size grid do you want (1-100)?:");
-        if (userSelectedGridSize === null) break;
-        userSelectedGridSize = parseInt(userSelectedGridSize);
-        gridColumnCount = userSelectedGridSize;
-        gridRowCount = userSelectedGridSize;
-        console.log(`Selected grid size: ${gridColumnCount}x${gridRowCount}.`);
-    }
-    while (
-        isNaN(userSelectedGridSize)
-        || userSelectedGridSize < 1
-        || userSelectedGridSize > 100
-    );
-
-    // Add column and row count to grid container
+    // Set column and row count to grid container
     const gridContainer = document.querySelector(".grid-container");
     gridContainer.style.setProperty("--grid-columns", gridColumnCount);
     gridContainer.style.setProperty("--grid-rows", gridColumnCount);
@@ -61,6 +29,29 @@ function selectGridSize() {
     };
 
     console.log(`A ${gridColumnCount}x${gridRowCount} grid container has been created!`);
+};
+
+function selectGridSize() {
+    let gridColumnCount = null;
+    let gridRowCount = null;
+
+    // Prompt user for grid size
+    do {
+        userSelectedGridSize = prompt("Which size grid do you want (1-100)?:");
+        if (userSelectedGridSize === null) break;
+        userSelectedGridSize = parseInt(userSelectedGridSize);
+        gridColumnCount = userSelectedGridSize;
+        gridRowCount = userSelectedGridSize;
+    }
+    while (
+        isNaN(userSelectedGridSize)
+        || userSelectedGridSize < 1
+        || userSelectedGridSize > 100
+    );
+
+    console.log(`Selected grid size: ${gridColumnCount}x${gridRowCount}.`);
+    
+    if (userSelectedGridSize != null) drawGrid(userSelectedGridSize);
 };
 
 /* 
@@ -310,4 +301,4 @@ drawColorInput.addEventListener("input", (e) => {
     selectDrawColor(e);
 });
 
-drawStartingGrid(16); // Default to 16x16 grid
+drawGrid(16); // Default to 16x16 grid
