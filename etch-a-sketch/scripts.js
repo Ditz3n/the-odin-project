@@ -115,6 +115,23 @@ function penDrawMode() {
     addAndSetEventListeners(handleMousedown, handleMouseOver);
 };
 
+function eraserDrawMode() {
+    // background-color: transparent to "erase" current color of grid element
+    function handleMousedown(e) {
+        e.preventDefault();
+        e.target.setAttribute("style", `background-color: transparent`);
+    };
+
+    function handleMouseOver(e) {
+        if (e.buttons === 1) {
+            e.preventDefault();
+            e.target.setAttribute("style", `background-color: transparent`);
+        };
+    }
+
+    addAndSetEventListeners(handleMousedown, handleMouseOver);
+}
+
 function selectDrawMode(btnVal) {
     // Remove any existing handlers before setting new ones
     removeAndNullifyEventListeners();
@@ -124,6 +141,7 @@ function selectDrawMode(btnVal) {
     });
     
     if (btnVal === "Pen") penDrawMode();
+    if (btnVal === "Eraser") eraserDrawMode();
 };
 
 function deselectDrawMode() {
