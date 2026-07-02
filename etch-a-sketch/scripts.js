@@ -1,11 +1,11 @@
+let userSelectedGridSize = null;
 let currentMousedownHandler = null;
 let currentMouseoverHandler = null;
 let drawColor = "#000000";
 
 function selectGridSize() {
-    let userSelectedGridSize = 0;
-    let gridColumnCount = userSelectedGridSize;
-    let gridRowCount = userSelectedGridSize;
+    let gridColumnCount = null;
+    let gridRowCount = null;
 
     // Prompt user for grid size
     do {
@@ -98,6 +98,7 @@ function penDrawMode() {
     // Local functions to declare how to paint the grid
     // It'll differ between the modes.
     function handleMousedown(e) {
+        // preventDefault() is to avoid it trying to drag the divs whilst holding mouse1 down
         e.preventDefault();
         // .target to select the element the event-object points at
         e.target.setAttribute("style", `background-color: ${drawColor}`);
@@ -136,6 +137,51 @@ function rainbowPenDrawMode() {
     addAndSetEventListeners(handleMousedown, handleMouseOver);
 };
 
+function brushDrawMode() {
+    function DrawElmtAndNeighborElmnts(e) {
+        // Get element number from ".grid-element-" class
+        const elementClassNoNum = parseInt(e.target.classList.value.slice(13));
+
+        // If grid is just 1 square, brush acts as pen
+        if (userSelectedGridSize > 1) {
+            if (elementClassNoNum-userSelectedGridSize >= 0) {
+                const aboveElement = document.querySelector(`.grid-element-${elementClassNoNum-userSelectedGridSize}`)
+                .setAttribute("style", `background-color: ${drawColor}`);
+            };
+
+            if (elementClassNoNum+1 <= userSelectedGridSize*userSelectedGridSize-userSelectedGridSize) {
+                const belowElement = document.querySelector(`.grid-element-${elementClassNoNum+userSelectedGridSize}`)
+                .setAttribute("style", `background-color: ${drawColor}`);
+            };
+
+            if (elementClassNoNum % userSelectedGridSize !== 0) {
+                const leftElement = document.querySelector(`.grid-element-${elementClassNoNum-1}`)
+                .setAttribute("style", `background-color: ${drawColor}`);
+            };
+            
+            if (elementClassNoNum % userSelectedGridSize !== userSelectedGridSize-1) {
+                const rightElement = document.querySelector(`.grid-element-${elementClassNoNum+1}`)
+                .setAttribute("style", `background-color: ${drawColor}`);
+            };
+        };
+        
+        e.preventDefault();
+        e.target.setAttribute("style", `background-color: ${drawColor}`);
+    };
+
+    function handleMousedown(e) {
+        DrawElmtAndNeighborElmnts(e);
+    };
+
+    function handleMouseOver(e) {
+        if (e.buttons === 1) {
+            DrawElmtAndNeighborElmnts(e);
+        };
+    };
+
+    addAndSetEventListeners(handleMousedown, handleMouseOver);
+};
+
 function eraserDrawMode() {
     // background-color: transparent to "erase" current color of grid element
     function handleMousedown(e) {
@@ -163,6 +209,7 @@ function selectDrawMode(btnVal) {
     
     if (btnVal === "Pen") penDrawMode();
     if (btnVal === "Rainbow Pen") rainbowPenDrawMode();
+    if (btnVal === "Brush") brushDrawMode();
     if (btnVal === "Eraser") eraserDrawMode();
 };
 
