@@ -108,10 +108,31 @@ function penDrawMode() {
             e.preventDefault();
             e.target.setAttribute("style", `background-color: ${drawColor}`);
         };
-    }
+    };
 
     // Set global handler values and add handlers to div elements
     // function references > calls - to later be called by the handlers
+    addAndSetEventListeners(handleMousedown, handleMouseOver);
+};
+
+function rainbowPenDrawMode() {
+    function randomColorGen() {
+        // Source: https://stackoverflow.com/a/5092872
+        return "#000000".replace(/0/g, () => (Math.floor((Math.random()*16))).toString(16)
+    )};
+
+    function handleMousedown(e) {
+        e.preventDefault();
+        e.target.setAttribute("style", `background-color: ${randomColorGen()}`);
+    };
+
+    function handleMouseOver(e) {
+        if (e.buttons === 1) {
+            e.preventDefault();
+            e.target.setAttribute("style", `background-color: ${randomColorGen()}`);
+        };
+    };
+
     addAndSetEventListeners(handleMousedown, handleMouseOver);
 };
 
@@ -127,10 +148,10 @@ function eraserDrawMode() {
             e.preventDefault();
             e.target.setAttribute("style", `background-color: transparent`);
         };
-    }
+    };
 
     addAndSetEventListeners(handleMousedown, handleMouseOver);
-}
+};
 
 function selectDrawMode(btnVal) {
     // Remove any existing handlers before setting new ones
@@ -141,6 +162,7 @@ function selectDrawMode(btnVal) {
     });
     
     if (btnVal === "Pen") penDrawMode();
+    if (btnVal === "Rainbow Pen") rainbowPenDrawMode();
     if (btnVal === "Eraser") eraserDrawMode();
 };
 
