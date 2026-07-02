@@ -40,8 +40,34 @@ function selectGridSize() {
     console.log(`A ${gridColumnCount}x${gridRowCount} grid container has been created!`);
 };
 
-function selectBrushColor() {
+/* 
+Calculate a single brightness color value based on color hex RGB.
+Source: https://stackoverflow.com/a/11868398 .
+Used to determine whether to have color hex preview color black/white.
+*/
+function getContrastYIQ(hexColor) {
+    const R = parseInt(hexColor.substring(1, 3), 16);
+    const G = parseInt(hexColor.substring(3, 5), 16);
+    const B = parseInt(hexColor.substring(5, 7), 16);
 
+    const yiq = ((R * 299) + (G * 587) + (B * 114)) / 1000;
+
+    return (yiq >= 128) ? 'black' : 'white';
+};
+
+// Draw Color Selector - Takes event object .value and stores it
+function selectDrawColor(e) {
+    drawColor = e.target.value;
+    console.log(drawColor);
+
+    let colorPickerDisplay = document.querySelector(".color-picker-container p");
+
+    // Clear first and showcase current selected draw color hex
+    colorPickerDisplay.textContent = "";
+    colorPickerDisplay.textContent = `${drawColor}`;
+
+    // Set color according to contrast
+    colorPickerDisplay.style.color = getContrastYIQ(drawColor);
 };
 
 // Get all button elements from the DOM as a NodeList element
@@ -71,9 +97,14 @@ allBtnElements.forEach((arr) => {
             case("btn-five"):
                 console.log("Button 5 Clicked!");
                 break;
-            case("btn-six"):
-                console.log("Button 6 Clicked!");
-                break;
         };  
     });
+});
+
+const drawColorInput = document.querySelector("input");
+
+let drawColor = "#000000";
+
+drawColorInput.addEventListener("input", (e) => {
+    selectDrawColor(e);
 });

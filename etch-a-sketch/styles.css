@@ -67,6 +67,38 @@ button:active {
     transform: scale(0.95);
 }
 
+.color-picker-container {
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 12%;
+    transition: all 0.1s ease-out;
+    border: solid 1px white;
+}
+
+.color-picker-container:hover {
+     transform: scale(1.05);
+}
+
+.color-picker-container:active {
+     transform: scale(0.95);
+}
+
+input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.color-hex-showcase {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translateX(-50%) translateY(-50%);
+    background-color: var(--drawColor);
+}
+
 .grid-container-wrapper {
     width: 600px;
     aspect-ratio: 1 / 1;
