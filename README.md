@@ -10,4 +10,4 @@ Etch-A-Sketch is a simple web application for drawing on a grid in the browser b
 
 ![Etch A Sketch](etch-a-sketch/image/README/etch-a-sketch.png)
 
-![Rainbow Pen Preview](etch-a-sketch\image\README\rainbow-pen-preview.gif)
+![Rainbow Pen Preview](etch-a-sketch/image/README/rainbow-pen-preview.gif)
