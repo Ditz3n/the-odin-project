@@ -3,6 +3,23 @@ let currentMousedownHandler = null;
 let currentMouseoverHandler = null;
 let drawColor = "#000000";
 
+function drawStartingGrid(val) {
+    let gridColumnCount = val;
+    let gridRowCount = val;
+
+    // Add column and row count to grid container
+    const gridContainer = document.querySelector(".grid-container");
+    gridContainer.style.setProperty("--grid-columns", gridColumnCount);
+    gridContainer.style.setProperty("--grid-rows", gridColumnCount);
+
+    // Iterate new grid elements into grid container
+    for (let i = 0; i < gridColumnCount * gridRowCount; i++) {
+        const gridElement = document.createElement("div");
+        gridElement.classList.add(`grid-element-${i}`);
+        gridContainer.appendChild(gridElement);
+    };
+}
+
 function selectGridSize() {
     let gridColumnCount = null;
     let gridRowCount = null;
@@ -276,3 +293,5 @@ const drawColorInput = document.querySelector("input");
 drawColorInput.addEventListener("input", (e) => {
     selectDrawColor(e);
 });
+
+drawStartingGrid(16); // Default to 16x16 grid
