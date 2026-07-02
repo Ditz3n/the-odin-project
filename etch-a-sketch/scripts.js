@@ -134,6 +134,10 @@ function penDrawMode() {
 };
 
 function rainbowPenDrawMode() {
+    let randomColor = "";
+    let colorPickerDisplay = document.querySelector(".color-picker-container p");
+    let colorPickerDisplayBG = document.querySelector(".color-picker-container input");
+
     function randomColorGen() {
         // Source: https://stackoverflow.com/a/5092872
         return "#000000".replace(/0/g, () => (Math.floor((Math.random()*16))).toString(16)
@@ -141,13 +145,25 @@ function rainbowPenDrawMode() {
 
     function handleMousedown(e) {
         e.preventDefault();
-        e.target.setAttribute("style", `background-color: ${randomColorGen()}`);
+        e.target.setAttribute("style", `background-color: ${randomColor}`);
     };
 
     function handleMouseOver(e) {
+        randomColor = randomColorGen();
+        
+        // Set input field default value to the current color to reflect it
+        colorPickerDisplayBG.value = randomColor;
+       
+        // Clear first and showcase current selected draw color hex
+        colorPickerDisplay.textContent = "";
+        colorPickerDisplay.textContent = `${randomColor}`;
+        
+        // Set color according to contrast
+        colorPickerDisplay.style.color = getContrastYIQ(randomColor);
+        
         if (e.buttons === 1) {
             e.preventDefault();
-            e.target.setAttribute("style", `background-color: ${randomColorGen()}`);
+            e.target.setAttribute("style", `background-color: ${randomColor}`);
         };
     };
 

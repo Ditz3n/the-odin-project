@@ -8,4 +8,6 @@ A collection of projects completed as part of The Odin Project curriculum, focus
 
 Etch-A-Sketch is a simple web application for drawing on a grid in the browser by clicking and dragging the mouse across the cells - built as [an exercise](https://www.theodinproject.com/lessons/foundations-etch-a-sketch) in vanilla JavaScript, DOM manipulation, and event handling.
 
-![1783005417571](etch-a-sketch/image/README/1783005417571.png)
+![1783005417571](etch-a-sketch/image/README/etch-a-sketch.png)
+
+![20260702-1539-55.1536254.mp4 [video-to-gif output image]](etch-a-sketch\image\README\rainbow-pen-preview.gif)
