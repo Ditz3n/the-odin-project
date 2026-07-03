@@ -1,7 +1,7 @@
 let firstNum = 0;
 let secondNum = 0;
 let operator = "";
-let currentInput = "";
+let currentInput = "0";
 let hasOperatorBeenClicked = false;
 let resultShowcase = document.querySelector(".result-container p");
 resultShowcase.textContent = currentInput;
@@ -62,7 +62,8 @@ gridOptions.map((gridOption) => {
 
     if (numbersArr.includes(gridOption)) {
         gridElement.addEventListener("click", () => {
-            
+
+            if (currentInput.slice(0) === "0") currentInput = "";
             if (hasOperatorBeenClicked === true) {
                 resultShowcase.textContent = "";
                 currentInput = "";
@@ -90,7 +91,17 @@ gridOptions.map((gridOption) => {
          gridElement.addEventListener("click", () => {
             switch (gridOption) {
                 case "=":
-                    resultShowcase.textContent = operate(operator, firstNum, secondNum)
+                    secondNum = parseInt(currentInput);
+                    resultShowcase.textContent = operate(operator, firstNum, secondNum);
+                    break;
+                case "C":
+                    firstNum = 0;
+                    secondNum = 0;
+                    operator = "";
+                    currentInput = "0";
+                    resultShowcase.textContent = currentInput;
+                    hasOperatorBeenClicked = false;
+                    break;
             };
         });
     };
