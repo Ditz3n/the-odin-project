@@ -1,6 +1,10 @@
 let firstNum = 0;
 let secondNum = 0;
 let operator = "";
+let currentInput = "";
+let hasOperatorBeenClicked = false;
+let resultShowcase = document.querySelector(".result-container p");
+resultShowcase.textContent = currentInput;
 
 function add(firstNum, secondNum) {
     return firstNum += secondNum;
@@ -35,24 +39,6 @@ function operate(operation, firstNum, secondNum) {
     };
 };
 
-firstNum = 5;
-secondNum = 5;
-operator = "+";
-
-console.log(operate(operator, firstNum, secondNum));
-
-operator = "-";
-
-console.log(operate(operator, firstNum, secondNum));
-
-operator = "x";
-
-console.log(operate(operator, firstNum, secondNum));
-
-operator = "÷";
-
-console.log(operate(operator, firstNum, secondNum));
-
 const gridOptions = [
     "%", "CE", "C", "DEL",
     "1/x", "x²", "2√x", "÷",
@@ -61,35 +47,54 @@ const gridOptions = [
     "1", "2", "3", "+",
     "±", "0", ",", "="];
 
-const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+const realOperatorsArr = ["+", "-", "x", "÷"];
 
-const operationsArr = [
-    "%", "CE", "C", "DEL",
-    "1/x", "x²", "2√x", "÷",
-    "x", "-", "+", "±", ",", 
-    "="];
+const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 const functionalGrid = document.querySelector(".functional-grid-container");
-
-console.log(functionalGrid);
 
 gridElementNum = 0;
 
 gridOptions.map((gridOption) => {
     const gridElement = document.createElement("button");
-    gridElement.classList.add(`${gridElementNum}`);
+    gridElement.classList.add(`grid-element-num-${gridElementNum}`);
     gridElement.textContent = gridOption;
 
     if (numbersArr.includes(gridOption)) {
         gridElement.addEventListener("click", () => {
-            console.log(`This is a grid number!: ${gridOption}`)
-        })
-    } else {
+            
+            if (hasOperatorBeenClicked === true) {
+                resultShowcase.textContent = "";
+                currentInput = "";
+                hasOperatorBeenClicked = false;
+            };
+
+            currentInput += gridOption;
+            resultShowcase.textContent = currentInput;
+        });
+    } else if (realOperatorsArr.includes(gridOption)) { 
         gridElement.addEventListener("click", () => {
-            console.log(`This is a grid operation!: ${gridOption}`)
-        })
-    }
+            
+            if (operator === "") {
+                firstNum = parseInt(currentInput);
+            }
+            else {
+                secondNum = parseInt(currentInput);
+                firstNum = operate(operator, firstNum, secondNum);
+            }
+            
+            operator = gridOption;
+            hasOperatorBeenClicked = true;
+        });
+    } else {
+         gridElement.addEventListener("click", () => {
+            switch (gridOption) {
+                case "=":
+                    resultShowcase.textContent = operate(operator, firstNum, secondNum)
+            };
+        });
+    };
 
     functionalGrid.appendChild(gridElement);
     gridElementNum++
-})
+});
