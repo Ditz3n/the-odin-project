@@ -26,10 +26,10 @@ function operate(operation, firstNum, secondNum) {
         case "-":
             return subtract(firstNum, secondNum);
             break;
-        case ("*"):
+        case "x":
             return multiply(firstNum, secondNum);
             break;
-        case ("/"):
+        case "÷":
             return divide(firstNum, secondNum);
             break;
     };
@@ -45,10 +45,51 @@ operator = "-";
 
 console.log(operate(operator, firstNum, secondNum));
 
-operator = "*";
+operator = "x";
 
 console.log(operate(operator, firstNum, secondNum));
 
-operator = "/";
+operator = "÷";
 
 console.log(operate(operator, firstNum, secondNum));
+
+const gridOptions = [
+    "%", "CE", "C", "DEL",
+    "1/x", "x²", "2√x", "÷",
+    "7", "8", "9", "x",
+    "4", "5", "6", "-",
+    "1", "2", "3", "+",
+    "±", "0", ",", "="];
+
+const numbersArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+
+const operationsArr = [
+    "%", "CE", "C", "DEL",
+    "1/x", "x²", "2√x", "÷",
+    "x", "-", "+", "±", ",", 
+    "="];
+
+const functionalGrid = document.querySelector(".functional-grid-container");
+
+console.log(functionalGrid);
+
+gridElementNum = 0;
+
+gridOptions.map((gridOption) => {
+    const gridElement = document.createElement("button");
+    gridElement.classList.add(`${gridElementNum}`);
+    gridElement.textContent = gridOption;
+
+    if (numbersArr.includes(gridOption)) {
+        gridElement.addEventListener("click", () => {
+            console.log(`This is a grid number!: ${gridOption}`)
+        })
+    } else {
+        gridElement.addEventListener("click", () => {
+            console.log(`This is a grid operation!: ${gridOption}`)
+        })
+    }
+
+    functionalGrid.appendChild(gridElement);
+    gridElementNum++
+})
