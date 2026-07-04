@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* 
+Color Palette: https://coolors.co/palette/2b2d42-8d99ae-edf2f4-ef233c-d90429
+#2B2D42 ~Space Indigo
+#8D99AE ~Lavender Grey
+#EDF2F4 ~Platinum
+#EF233C ~Strawberry Red
+#D90429 ~Flag Red
+*/
+* {
+    font-family: "Poppins";
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    background-color: EDF2F4;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0.5% 2%;
+    border-bottom: solid 1dvh #2B2D42;
+    background-color: #EDF2F4;
+    height: 40%;
+    flex-shrink: 0;
+    container-type: size;
+    container-name: display;
+}
+
+.display-container p.replay-memory {
+    font-weight: bold;
+    font-size: 30cqh;
+    color: #D90429;
+}
+
+.display-container p.display-val {
+    font-weight: bold;
+    font-size: 40cqh;
+    color: #EF233C;
+}
+
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    height: 60%;
+    flex: 1;
+}
+
+.buttons-container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #8D99AE;
+    border-radius: 0;
+    border: 0;
+    font-weight: bold;
+    font-size: 6cqh;
+    color: #222435;
+    transition: all 0.1s ease-out;
+}
+
+.buttons-container button:hover {
+    background-color: #5A667A;
+    font-size: 7cqh;
+}
+
+.buttons-container button:active {
+    font-size: 5cqh;
+}
