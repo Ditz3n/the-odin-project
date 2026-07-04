@@ -1,30 +1,35 @@
-let firstVal = 0;
-let secondVal = 0;
-let operator = "";
-let replayMemory = "0";
-let displayVal = "0";
-
+/* SETUP DISPLAY */
 const displayContainer = document.querySelector(".display-container");
-const replayMemoryElement = document.createElement("p");
-replayMemoryElement.classList.add("replay-memory");
-replayMemoryElement.textContent = replayMemory;
-const displayValElement = document.createElement("p");
-displayValElement.classList.add("display-val");
-displayValElement.textContent = displayVal;
-const buttonsContainer = document.querySelector(".buttons-container");
 
-displayContainer.appendChild(replayMemoryElement);
-displayContainer.appendChild(displayValElement);
+const previousEntryElmt = document.createElement("p");
+const currentEntryElmt = document.createElement("p");
+previousEntryElmt.classList.add("previous-entry-element");
+currentEntryElmt.classList.add("current-entry-element");
+previousEntryElmt.textContent = "0";
+currentEntryElmt.textContent = "0";
+displayContainer.appendChild(previousEntryElmt);
+displayContainer.appendChild(currentEntryElmt);
 
-const calcButtons = [
-    "7", "8", "9", "+",
-    "4", "5", "6", "-",
-    "1", "2", "3", "x", 
-    "0", ",", "=", "/"]
+/* SETUP BUTTONS */
+const topButtonsContainer = document.querySelector(".top-buttons-container");
+const bottomButtonsContainer = document.querySelector(".bottom-buttons-container");
 
-calcButtons.map((button) => {
-    const buttonElement = document.createElement("button");
-    buttonElement.classList.add(`button-${button}`);
-    buttonElement.textContent = button;
-    buttonsContainer.appendChild(buttonElement);
+const buttons = [
+    { label: "CE", position: "top"}, { label: "C", position: "top"},
+    { label: "7", position: "bottom"}, { label: "8", position: "bottom"}, { label: "9", position: "bottom"}, { label: "+", position: "bottom"},
+    { label: "4", position: "bottom"}, { label: "5", position: "bottom"}, { label: "6", position: "bottom"}, { label: "-", position: "bottom"},
+    { label: "1", position: "bottom"}, { label: "2", position: "bottom"}, { label: "3", position: "bottom"}, { label: "x", position: "bottom"},
+    { label: ",", position: "bottom"}, { label: "0", position: "bottom"}, { label: "=", position: "bottom"}, { label: "/", position: "bottom"},
+];
+
+buttons.forEach((button, index) => {
+    console.log(button);
+    console.log(index);
+    const buttonElmt = document.createElement("button");
+    buttonElmt.classList.add(`button-${button.label}`);
+    buttonElmt.textContent = button.label;
+
+    if (button.position === "top") topButtonsContainer.appendChild(buttonElmt);
+    else bottomButtonsContainer.appendChild(buttonElmt);
 });
+
