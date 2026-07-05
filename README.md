@@ -14,4 +14,4 @@ Etch-A-Sketch is a simple web application for drawing on a grid in the browser b
 
 The Calculator Project is a simple web application for calculating simple mathematical operations in the browser by using the GUI. built as [an exercise](https://www.theodinproject.com/lessons/foundations-calculator) in vanilla JavaScript, DOM manipulation, and event handling.
 
-![Calculator](image/README/1783245415420.gif)
+![Calculator](calculator/image/README/1783245415420.gif)
