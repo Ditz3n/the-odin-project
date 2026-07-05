@@ -42,18 +42,26 @@ buttons.forEach((button, index) => {
         buttonElmt.addEventListener(("click"), () => {
             switch(button.label) {
                 case "=":
-                    if (operationFlag) findResult()
+                    operationFlag = true
+                    if (operationFlag) findResult();
+                    break;
+                case "CE":
+                    clearEntry();
+                    break;
+                case "C":
+                    clear();
                     break;
                 default:
                     operatorChar = button.label;
                     previousEntryElmt.textContent = currentEntryNum + operatorChar;
                     previousEntryNum = currentEntryNum;
                     operationFlag = true;
-            }
+                    break;
+            };
         });
     } else if (button.type === "number") {
         buttonElmt.addEventListener(("click"), () => {
-            updateCurrentEntry(button.label)
+            updateCurrentEntry(button.label);
         });
     };
 });
@@ -78,16 +86,12 @@ function divide(firstVal, secondVal) {
 function operate(operatorVal, firstVal, secondVal) {
     switch(operatorVal) {
         case "+":
-            console.log(`Result of ${firstVal} + ${secondVal}: ${add(firstVal, secondVal)}`);
             return add(firstVal, secondVal);
         case "-":
-            console.log(`Result of ${firstVal} - ${secondVal}: ${subtract(firstVal, secondVal)}`);
             return subtract(firstVal, secondVal);
         case "x":
-            console.log(`Result of ${firstVal} x ${secondVal}: ${multiply(firstVal, secondVal)}`);
             return multiply(firstVal, secondVal);
         case "/":
-            console.log(`Result of ${firstVal} / ${secondVal}: ${divide(firstVal, secondVal)}`);
             return divide(firstVal, secondVal);
     };
 };
@@ -98,28 +102,26 @@ function updateCurrentEntry(value) {
         currentEntryElmt.textContent = currentEntryNum;
         if (operationFlag) operationFlag = false;
         if (value === ",") currentEntryNum = "0";
-        haveUsedComma = false
-    }
+        haveUsedComma = false;
+    };
 
-    commaAlreadyUsed = (value === "," && haveUsedComma)
+    commaAlreadyUsed = (value === "," && haveUsedComma);
 
     if (!commaAlreadyUsed) {
         currentEntryNum += value;
         currentEntryElmt.textContent = currentEntryNum;
         if (value === ",") haveUsedComma = true;
-    }
+    };
 };
 
 function findResult() {
-    console.log(previousEntryNum, currentEntryNum, operatorChar)
-    
     previousEntryElmt.textContent = `${currentEntryNum} ${operatorChar} ${previousEntryNum} =`;
 
     // Turn comma and strings into float values for operate function
     previousEntryNum = previousEntryNum.replaceAll(",", ".");
     currentEntryNum = currentEntryNum.replaceAll(",", ".");
-    previousEntryNum = parseFloat(previousEntryNum)
-    currentEntryNum = parseFloat(currentEntryNum)
+    previousEntryNum = parseFloat(previousEntryNum);
+    currentEntryNum = parseFloat(currentEntryNum);
     
     // Operate on float values
     if (secondOperand !== "0") currentEntryNum = operate(operatorChar, currentEntryNum, previousEntryNum);
@@ -127,11 +129,26 @@ function findResult() {
     secondOperand = currentEntryNum;
 
     // Turn float values back into displayable strings
-    previousEntryNum = String(previousEntryNum)
-    currentEntryNum = String(currentEntryNum)
+    previousEntryNum = String(previousEntryNum);
+    currentEntryNum = String(currentEntryNum);
     previousEntryNum = previousEntryNum.replaceAll(".", ",");
     currentEntryNum = currentEntryNum.replaceAll(".", ",");
     
     currentEntryElmt.textContent = currentEntryNum;
     operationFlag = true;
-}
+};
+
+function clearEntry() {
+    currentEntryNum = "0";
+    currentEntryElmt.textContent = currentEntryNum;
+};
+
+function clear() {
+    currentEntryNum = "0";
+    previousEntryNum = "0";
+    operatorChar = "";
+    operationFlag = false;
+    haveUsedComma = false;
+    previousEntryElmt.textContent = "";
+    currentEntryElmt.textContent = currentEntryNum;
+};
