@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Boss cartoon';
+    src: url('BosscartoonRegular.woff2') format('woff2'),
+        url('BosscartoonRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Super Starfish';
+    src: url('SuperStarfish-Regular.woff2') format('woff2'),
+        url('SuperStarfish-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
