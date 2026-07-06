@@ -1,0 +1,44 @@
+body {
+  font: 1.2em / 1.5 sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  width: 300px;
+}
+
+td,
+th {
+  padding: 0.2em;
+  text-align: left;
+}
+
+/* Add styles here */
+
+a {
+    color: orange;
+}
+
+a:visited {
+    color: green;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.container:first-child {
+    font-size: 150%;
+}
+
+.container:first-child::first-line {
+    color: red;
+}
+
+tr:nth-child(2n) {
+    background-color: #333333;
+    color: white;
+}
