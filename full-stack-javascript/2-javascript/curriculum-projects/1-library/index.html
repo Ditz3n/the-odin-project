@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <link rel="stylesheet" type="text/css" href="./styles.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Odin Project - Project: Library</title>
+        <script src="./scripts.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <div class="header-title">
+                <a href="#" onclick="window.location.reload();">
+                    <img src="./images/pearl-drone-icon.png">
+                    <span>
+                        <h1>Pearl's Library</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                            <path d="M0 0h256v256H0z" fill="none" />
+                            <path fill="currentColor" d="M208 144a15.78 15.78 0 0 1-10.42 14.94L146 178l-19 51.62a15.92 15.92 0 0 1-29.88 0L78 178l-51.62-19a15.92 15.92 0 0 1 0-29.88L78 110l19-51.62a15.92 15.92 0 0 1 29.88 0L146 110l51.62 19A15.78 15.78 0 0 1 208 144m-56-96h16v16a8 8 0 0 0 16 0V48h16a8 8 0 0 0 0-16h-16V16a8 8 0 0 0-16 0v16h-16a8 8 0 0 0 0 16m88 32h-8v-8a8 8 0 0 0-16 0v8h-8a8 8 0 0 0 0 16h8v8a8 8 0 0 0 16 0v-8h8a8 8 0 0 0 0-16" />
+                        </svg>
+                    </span>
+                </a>   
+            </div>
+            <div>
+                <button type="button" class="add-book-btn" aria-label="Add new book" id="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M520-400h80v-120h120v-80H600v-120h-80v120H400v80h120v120ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/></svg>
+                    <span>Add book</span>
+                </button>
+            </div>
+        </header>
+        <section class="main-section-container">
+            <div>
+                <h1>Library Entries</h1>
+            </div>
+            <div class="bookshelf">
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2026 Mads Dittmann Villadsen. All Rights Reserved.</p>
+        </footer>
+        <dialog id="dialog">
+            <form action="#" method="dialog" id="form">
+                <div class="form-container-one">
+                    <div class="dialog-header">
+                      <h1>Add book</h1>
+                      <button type="button" id="close">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    <p>Fill out the form below and click "add" to add a new book to the library.</p> 
+                </div>
+                <div class="form-container-two">
+                    <div>
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" placeholder="Drone Adventures" maxlength="30" required onKeyup="checkform()">
+                    </div>
+
+                    <div>
+                        <label for="author">Author</label>
+                        <input id="author" name="author" type="text" placeholder="Pearl" maxlength="30" required onKeyup="checkform()">
+                    </div>
+
+                    <div>
+                        <label for="num-of-pages">Number of pages</label>
+                        <input id="num-of-pages" name="num_of_pages" type="number" placeholder="30" min="1" max="999" required onKeyup="checkform()">
+                    </div>
+                    
+                    
+                </div>
+                <div class="form-container-three">
+                    <div>
+                        <label for="is-read">Is read?</label>
+                        <input id="is-read" name="is_read" type="checkbox">  
+                    </div>
+                    <button title="Please fill out all input fields." id="submitButton" disabled="disabled" value="submit">Add</button>   
+                </div>
+            </form>
+        </dialog>
+    </body>
+</html>
