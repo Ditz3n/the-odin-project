@@ -1,8 +1,8 @@
 import { format } from "date-fns";
 
 export default class project {
-    constructor(title,
-                description,
+    constructor(title = "Unnamed",
+                description = "No description.",
                 id = crypto.randomUUID(),
                 todos = [],
                 creationDate = format(new Date(), "MM/dd/yyyy"))
