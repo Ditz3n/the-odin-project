@@ -4,11 +4,5 @@ import storage from "./storage.js";
 import todo from "./todos.js";
 import project from "./project.js";
 
-console.log("Hello index.js!");
-
-window.storage = storage;
-window.project = project;
-
-const layoutObject = new layout;
-
-layoutObject.drawLayout();
+// #SuperCleanOneLineIndexEntryPointCode
+new layout().drawLayout();

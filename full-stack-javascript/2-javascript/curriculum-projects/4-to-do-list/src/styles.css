@@ -242,16 +242,46 @@ header h1 {
     width: 30px;
 }
 
+#sidebar #new-todo-btn {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0px 10px;
+    border: none;
+    background-color: transparent;
+    transition: all 0.1s ease-out;
+}
+
+#sidebar #new-todo-btn:hover {
+    transform: scale(1.05);
+}
+
+#sidebar #new-todo-btn:active {
+    transform: scale(0.95);
+}
+
+#sidebar #new-todo-btn span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#sidebar #new-todo-btn svg {
+    height: 30px;
+    width: 30px;
+}
+
 #todos-area {
     min-height: 0;
     overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 350px));;
     grid-auto-rows: auto;
     background-color: var(--bg);
     padding: 40px;
     gap: 40px 40px;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: flex-start;
     align-items: flex-start;
     justify-items: center;
@@ -300,6 +330,24 @@ header h1 {
     align-items: flex-end;
 }
 
+#todos-area > div > div:nth-child(4) div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#todos-area > div > div div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#todos-area > div > div div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 #todos-area > div div:nth-child(4) button {
     cursor: pointer;
     background-color: transparent;
@@ -345,6 +393,8 @@ dialog {
     border: solid 4px var(--border);
 }
 
+/* Create Project Dialog */
+
 dialog#create-project-dialog {
     height: 700px;
     padding: 20px;
@@ -361,6 +411,34 @@ dialog#create-project-dialog form {
 
 dialog#create-project-dialog form > div:nth-child(1) {
     grid-row: 1 / 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+dialog#create-project-dialog form > div:nth-child(1) #close-project-dialog-btn {
+    cursor: pointer;
+    background-color: var(--bgTwo);
+    color: var(--bg);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s ease-out;
+}
+
+dialog#create-project-dialog form > div:nth-child(1) #close-project-dialog-btn:hover {
+    transform: scale(1.05);
+}
+
+dialog#create-project-dialog form > div:nth-child(1) #close-project-dialog-btn:active {
+    transform: scale(0.95);
+}
+
+dialog#create-project-dialog form > div:nth-child(1) #close-project-dialog-btn svg {
+    height: 30px;
+    width: 30px;
 }
 
 dialog#create-project-dialog form > div:nth-child(2) {
@@ -411,6 +489,110 @@ dialog#create-project-dialog form > div:nth-child(3) button:hover {
 }
 
 dialog#create-project-dialog form > div:nth-child(3) button:active {
+    transform: scale(0.95);
+}
+
+/* Create Todo Dialog */
+
+dialog#create-todo-dialog {
+    height: 700px;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+dialog#create-todo-dialog form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+    gap: 20px 0px;
+}
+
+dialog#create-todo-dialog form > div:nth-child(1) {
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+dialog#create-todo-dialog form > div:nth-child(1) #close-todo-dialog-btn {
+    cursor: pointer;
+    background-color: var(--bgTwo);
+    color: var(--bg);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s ease-out;
+}
+
+dialog#create-todo-dialog form > div:nth-child(1) #close-todo-dialog-btn:hover {
+    transform: scale(1.05);
+}
+
+dialog#create-todo-dialog form > div:nth-child(1) #close-todo-dialog-btn:active {
+    transform: scale(0.95);
+}
+
+dialog#create-todo-dialog form > div:nth-child(1) #close-todo-dialog-btn svg {
+    height: 30px;
+    width: 30px;
+}
+
+dialog#create-todo-dialog form > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-row: 2 / 3;
+}
+
+dialog#create-todo-dialog form > div:nth-child(2) > div {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog#create-todo-dialog form > div:nth-child(2) > div label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+dialog#create-todo-dialog form > div:nth-child(2) > div input {
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+dialog#create-todo-dialog form > div:nth-child(2) > div#priority-elements div:nth-child(n +1) label,
+dialog#create-todo-dialog form > div:nth-child(2) > div#priority-elements div:nth-child(n +1) input {
+    cursor: pointer;
+}
+
+dialog#create-todo-dialog form > div:nth-child(3) {
+    grid-row: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+dialog#create-todo-dialog form > div:nth-child(3) button {
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--bgTwo);
+    color: var(--text);
+    transition: all 0.1s ease-out;
+}
+
+dialog#create-todo-dialog form > div:nth-child(3) button:hover {
+    transform: scale(1.05);
+}
+
+dialog#create-todo-dialog form > div:nth-child(3) button:active {
     transform: scale(0.95);
 }
 

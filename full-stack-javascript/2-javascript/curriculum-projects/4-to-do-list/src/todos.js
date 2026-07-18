@@ -11,7 +11,7 @@ export default class todo {
                 ],
                 checklist = [
                     { id: crypto.randomUUID(), text: "Do this...", checked: false },
-                    { id: crypto.randomUUID(), text: "Do that...", checked: false },
+                    { id: crypto.randomUUID(), text: "Do that...", checked: false }
                 ],
                 completed = false) {
         this.id = id;

@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import todo from "./todos.js";
 
 export default class project {
     constructor(title = "Unnamed",
@@ -10,7 +11,18 @@ export default class project {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.todos = todos;
+        this.todos = todos
+        .filter((todoData) => todoData !== null)
+        .map((todoData) => new todo(
+            todoData.id,
+            todoData.title,
+            todoData.description,
+            todoData.dueDate,
+            todoData.priority,
+            todoData.notes,
+            todoData.checklist,
+            todoData.completed
+        ));
         this.creationDate = creationDate;
     };
 

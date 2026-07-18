@@ -13,12 +13,10 @@ const storage = (() => {
         return projects[projectIndex];
     };
     const addProject = (projectObject) => {
-        console.log(`addProject() created a new project!\nid: ${projectObject.id}\ntitle: ${projectObject.title}\ndescription: ${projectObject.description} !`);
         projects.push(projectObject);
         saveProjects();
     };
     const deleteProject = (id) => {
-        console.log(`deleteProject() called for: ${(id)} !`);
         const projectIndex = projects.findIndex((element) => element.id === id);
         if (projectIndex !== -1) projects.splice(projectIndex, 1);
         saveProjects();
@@ -54,7 +52,7 @@ const storage = (() => {
         addProject(secondDefaultProject);
     };
         
-    return { getAllProjects, getProject, addProject, deleteProject, editProject };
+    return { getAllProjects, getProject, addProject, deleteProject, editProject, saveProjects };
 })();
 
 export default storage;
