@@ -9,4 +9,6 @@ console.log("Hello index.js!");
 window.storage = storage;
 window.project = project;
 
-console.log(storage.getAllProjects())
+const layoutObject = new layout;
+
+layoutObject.drawLayout();

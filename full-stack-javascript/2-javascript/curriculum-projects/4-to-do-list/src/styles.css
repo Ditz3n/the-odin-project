@@ -102,6 +102,7 @@ header h1 {
     border-radius: 6px;
     border: none;
     color: var(--textTwo);
+    background-color: transparent;
 }
 
 #sidebar #all-tasks-btn.active {
@@ -131,27 +132,67 @@ header h1 {
     width: 100%;
 }
 
-#sidebar > #projects > div[id^="project-"] {
+#sidebar > #projects > div {
     padding: 16px 8px;
     background-color: var(--bgThree);
     border-radius: 6px;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    gap: 0px 10px;
 }
 
-#sidebar > #projects > div[id^="project-"].active {
+#sidebar > #projects > div > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 7;
+}
+
+#sidebar > #projects > div > div:nth-child(1) input {
+    box-sizing: border-box;
+    border: none;
+    border-radius: 6px;
+    padding: 6px;
+    width: 100%;
+}
+
+#sidebar > #projects > div > div:nth-child(1) input:nth-child(1) {
+    height: 26px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#sidebar > #projects > div > div:nth-child(1) input:nth-child(2) {
+    height: 20px;
+    font-size: 16px;
+}
+
+#sidebar > #projects > div[data-editing="true"] > div:nth-child(1) {
+    gap: 10px 0px;
+}
+
+#sidebar > #projects > div[data-editing="true"] > div:nth-child(2) {
+    justify-content: center;
+}
+
+#sidebar > #projects > div[data-active="true"] {
     background-color: var(--bgTwo);
     color: var(--text);
 }
 
-#sidebar > #projects > div[id^="project-"] > div {
+#sidebar > #projects > div > div:nth-child(2) {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 10px;
+    flex: 3;
 }
 
-#sidebar > #projects > div[id^="project-"] > div button {
+#sidebar > #projects > div > div:nth-child(2) button {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -159,15 +200,15 @@ header h1 {
     transition: all 0.1s ease-out;
 }
 
-#sidebar > #projects > div[id^="project-"] > div button:hover {
+#sidebar > #projects > div > div:nth-child(2) button:hover {
     transform: scale(1.15);
 }
 
-#sidebar > #projects > div[id^="project-"] > div button:active {
+#sidebar > #projects > div > div:nth-child(2) button:active {
     transform: scale(0.85);
 }
 
-#sidebar > #projects > div[id^="project-"].active > div button {
+#sidebar > #projects > div[data-active="true"] > div:nth-child(2) button {
     color: var(--text);
 }
 
@@ -216,7 +257,7 @@ header h1 {
     justify-items: center;
 }
 
-#todos-area > div[id^="todo-card-"] {
+#todos-area > div {
     color: var(--text);
     display: grid;
     grid-template-rows: auto 1fr 1fr 1fr;
@@ -230,36 +271,36 @@ header h1 {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-#todos-area > div[id^="todo-card-"] ol {
+#todos-area > div ol {
     margin-block-start: 0em;
     margin-block-end: 0em;
     padding-inline-start: 16px;
 }
 
-#todos-area > div[id^="todo-card-"] ul {
+#todos-area > div ul {
     margin-block-start: 0em;
     margin-block-end: 0em;
     padding-inline-start: 16px;
 }
 
-#todos-area > div[id^="todo-card-"] h4 {
+#todos-area > div h4 {
     font-weight: bold;
     font-size: 24px;
 }
 
-#todos-area > div[id^="todo-card-"] h5 {
+#todos-area > div h5 {
     font-weight: bold;
     font-size: 16px;
 }
 
-#todos-area > div[id^="todo-card-"] div:nth-child(4) {
+#todos-area > div div:nth-child(4) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-#todos-area > div[id^="todo-card-"] div:nth-child(4) button {
+#todos-area > div div:nth-child(4) button {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -279,18 +320,98 @@ header h1 {
     display: inline;
 }
 
-#todos-area > div[id^="todo-card-"] div:nth-child(4) button:hover {
+#todos-area > div div:nth-child(4) button:hover {
     transform: scale(1.05);
 }
 
-#todos-area > div[id^="todo-card-"] div:nth-child(4) button:active {
+#todos-area > div div:nth-child(4) button:active {
     transform: scale(0.95);
 }
 
-#todos-area > div[id^="todo-card-"] div:nth-child(4) button svg {
+#todos-area > div div:nth-child(4) button svg {
     color: var(--text);
     width: 46px;
     height: 46px;
+}
+
+/* DIALOG */
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 500px;
+    background-color: var(--bgThree);
+    border: solid 4px var(--border);
+}
+
+dialog#create-project-dialog {
+    height: 700px;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+dialog#create-project-dialog form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+    gap: 20px 0px;
+}
+
+dialog#create-project-dialog form > div:nth-child(1) {
+    grid-row: 1 / 2;
+}
+
+dialog#create-project-dialog form > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-row: 2 / 3;
+}
+
+dialog#create-project-dialog form > div:nth-child(2) > div {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog#create-project-dialog form > div:nth-child(2) > div label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+dialog#create-project-dialog form > div:nth-child(2) > div input {
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+dialog#create-project-dialog form > div:nth-child(3) {
+    grid-row: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+dialog#create-project-dialog form > div:nth-child(3) button {
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--bgTwo);
+    color: var(--text);
+    transition: all 0.1s ease-out;
+}
+
+dialog#create-project-dialog form > div:nth-child(3) button:hover {
+    transform: scale(1.05);
+}
+
+dialog#create-project-dialog form > div:nth-child(3) button:active {
+    transform: scale(0.95);
 }
 
 footer {
