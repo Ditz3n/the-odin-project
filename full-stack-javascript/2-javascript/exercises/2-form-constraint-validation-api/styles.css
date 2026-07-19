@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: "Poppins";
+    background-color: var(--bg);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+form label {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+form label span {
+    color: red;
+}
+
+form input {
+    width: 500px;
+    height: 60px;
+    font-size: 20px;
+    padding: 10px;
+    border: solid 3px black;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+form input:user-invalid {
+  border: solid 3px red;
+}
+
+form input:user-valid {
+  border: solid 3px black;
+}
+
+a {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    justify-content: flex-start;
+    align-items: center;
+    color: red;
+    height: 4px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    height: 4px;
+    color: red;
+}
+
+svg {
+    display: none;
+    color: red;
+    margin-top: 20px;
+}
+
+svg.visible {
+    display: inline;
+}
+
+form button {
+    cursor: pointer;
+    height: 60px;
+    background-color: black;
+    border: solid 4px white;
+    color: white;
+    border-radius: 12px;
+    font-size: 30px;
+    font-weight: bold;
+    transition: all 0.1s ease-out;
+}
+
+form button:hover {
+    transform: scale(1.025);
+}
+
+form button:active {
+    transform: scale(0.975);
+}
+
+header {
+    margin-bottom: auto;
+}
+
+footer {
+    margin-top: auto;
+}
