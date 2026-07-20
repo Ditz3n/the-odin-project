@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <link rel="stylesheet" type="text/css" href="./styles.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Odin Project - Exercise: Form Validation</title>
+        <script src="./countries.js" defer></script>
+        <script src="./scripts.js" defer></script>
+    </head>
+    <body>
+        <header></header>
+        <div class="content">
+            <form id="main-form" method="post" action="#" novalidate>
+                <div>
+                    <label for="email">Email<span>*</span></label>
+                    <input type="email" id="email" name="email" placeholder="something@somewhere.com" required>
+                    <p></p>
+                </div>
+                <div>
+                    <label for="country">Country<span>*</span></label>
+                    <input type="text" id="country" name="country" placeholder="Somewhere" required>
+                    <a tabindex="-1" href="https://gist.githubusercontent.com/incredimike/1469814/raw/2951146d074bdd32320e0a17ebbba18da684aa45/variousCountryListFormats.js" target="_blank">
+                        <p></p>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M318-120q-82 0-140-58t-58-140q0-40 15-76t43-64l134-133 56 56-134 134q-17 17-25.5 38.5T200-318q0 49 34.5 83.5T318-200q23 0 45-8.5t39-25.5l133-134 57 57-134 133q-28 28-64 43t-76 15Zm79-220-57-57 223-223 57 57-223 223Zm251-28-56-57 134-133q17-17 25-38t8-44q0-50-34-85t-84-35q-23 0-44.5 8.5T558-726L425-592l-57-56 134-134q28-28 64-43t76-15q82 0 139.5 58T839-641q0 39-14.5 75T782-502L648-368Z"/></svg>
+                    </a>
+                </div>
+                <div>
+                    <label for="postal">Postal Code<span>*</span></label>
+                    <input type="text" id="postal" name="postal" placeholder="6767" required>
+                    <p></p>
+                </div>
+                <div>
+                    <label for="password">Password<span>*</span></label>
+                    <input type="password" id="password" name="password" required>
+                    <p></p>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm Password<span>*</span></label>
+                    <input type="password" id="confirm-password" name="password" required>
+                    <p></p>
+                </div>
+                <button type="submit" id="submit-btn">Submit</button>
+            </form>
+        </div>
+        <footer></footer>
+    </body>
+</html>
